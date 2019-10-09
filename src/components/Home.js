@@ -1,23 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import { Jumbotron, Button } from "reactstrap";
 
-export default class Home extends Component {
-  render() {
-    return (
-      <div>
-        <Jumbotron className="custom-jumbotron">
-          <h1 className="main-text">Hello, Welcome to Radio Africa</h1>
-          <Button
-            color="secondary"
-            className="custom-button"
-            size="lg"
-            block
-            onClick={this.props.auth.login}
-          >
-            Sign Up / Sign In
-          </Button>
-        </Jumbotron>
-      </div>
-    );
-  }
-}
+const Home = props => (
+  <div>
+    <Jumbotron className="custom-jumbotron">
+      <h1 className="main-text">Hello, Welcome to Radio Africa</h1>
+      <Button
+        color="secondary"
+        className="custom-button"
+        size="lg"
+        block
+        onClick={props.auth.authorize}
+      >
+        Sign Up / Sign In
+      </Button>
+    </Jumbotron>
+  </div>
+);
+
+export default Home;

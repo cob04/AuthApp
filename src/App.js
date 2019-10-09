@@ -13,7 +13,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.auth = new Auth(this.props.history);
+    this.state = {};
   }
+  setUserData = user => this.setState({ user: user });
   render() {
     return (
       <Router>
@@ -27,9 +29,19 @@ class App extends Component {
           <Route
             exact
             path="/callback"
-            render={props => <Callback auth={this.auth} {...props} />}
+            render={props => (
+              <Callback
+                setUser={this.setUserData}
+                auth={this.auth}
+                {...props}
+              />
+            )}
           />
-          <Route path="/profile" component={Profile} />
+          <Route
+            exact
+            path="/profile"
+            render={props => <Profile user={this.state.user} {...props} />}
+          />
           <Footer />
         </div>
       </Router>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import Home from "./components/Home";
-import Profile from "./components/Profile";
+import ProfilePage from "./containers/ProfilePage";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Callback from "./components/Callback";
@@ -40,7 +40,7 @@ class App extends Component {
           <Route
             exact
             path="/profile"
-            render={props => <Profile user={this.state.user} {...props} />}
+            render={props => <ProfilePage user={this.state.user} {...props} />}
           />
           <Footer />
         </div>

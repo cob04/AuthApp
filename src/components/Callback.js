@@ -1,23 +1,32 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Jumbotron } from "reactstrap";
 
-export default class Callback extends Component {
-  componentDidMount() {
-    var urlParams = new URLSearchParams(this.props.location.search);
-    console.log(this.props.location.search);
+const Callback = props => {
+  const [callbackError, setCallbackError] = useState([]);
+
+  useEffect(() => {
+    var urlParams = new URLSearchParams(props.location.search);
     let auth_code = urlParams.get("code");
-    this.props.auth.requestAccess(auth_code).then(response => {
-      this.props.setUser(response.data.user);
-      this.props.history.push("/profile");
-    });
-  }
-  render() {
-    return (
-      <div>
-        <Jumbotron className="custom-jumbotron">
+    props.auth
+      .requestAccess(auth_code)
+      .then(response => {
+        props.setUser(response.data.user);
+        props.history.push("/profile");
+      })
+      .catch(_callbackError => setCallbackError(_callbackError));
+  }, [props]);
+
+  return (
+    <div>
+      <Jumbotron className="custom-jumbotron">
+        {!callbackError ? (
           <h1 className="main-text">Please be patient, Loading ...</h1>
-        </Jumbotron>
-      </div>
-    );
-  }
-}
+        ) : (
+          <h1 className="main-text">Oops!! We've ecountered an Error ...</h1>
+        )}
+      </Jumbotron>
+    </div>
+  );
+};
+
+export default Callback;

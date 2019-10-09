@@ -4,7 +4,6 @@ import {
   Collapse,
   Navbar,
   Nav,
-  NavLink,
   NavItem,
   NavbarToggler,
   NavbarBrand
@@ -35,9 +34,9 @@ export default class Example extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink className="custom-nav-link">
-                  <Link to="/profile">Profile</Link>
-                </NavLink>
+                <Link className="custom-nav-link" to="/profile">
+                  Profile
+                </Link>
               </NavItem>
             </Nav>
           </Collapse>

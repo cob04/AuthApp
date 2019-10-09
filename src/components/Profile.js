@@ -49,7 +49,7 @@ export const ProfileWithNoData = () => (
       <h1 className="main-text">
         You're not logged in{" "}
         <small>
-          <Link to="/">Go back home and try</Link>
+          <Link to="/">Go back home and try again</Link>
         </small>
       </h1>
     </Jumbotron>

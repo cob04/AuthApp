@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import Home from "./components/Home";
-import Profile from "./components/Profile";
+import ProfilePage from "./containers/ProfilePage";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Callback from "./components/Callback";
@@ -16,6 +16,12 @@ class App extends Component {
     this.state = {};
   }
   setUserData = user => this.setState({ user: user });
+  setAccessToken = (accessToken, tokenType, refreshToken) =>
+    this.setState({
+      accessToken: accessToken,
+      tokenType: tokenType,
+      refreshToken: refreshToken
+    });
   render() {
     return (
       <Router>
@@ -24,7 +30,9 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={props => <Home auth={this.auth} {...props} />}
+            render={props => (
+              <Home auth={this.auth} user={this.state.user} {...props} />
+            )}
           />
           <Route
             exact
@@ -32,6 +40,7 @@ class App extends Component {
             render={props => (
               <Callback
                 setUser={this.setUserData}
+                setAccessToken={this.setAccessToken}
                 auth={this.auth}
                 {...props}
               />
@@ -40,7 +49,7 @@ class App extends Component {
           <Route
             exact
             path="/profile"
-            render={props => <Profile user={this.state.user} {...props} />}
+            render={props => <ProfilePage user={this.state.user} {...props} />}
           />
           <Footer />
         </div>

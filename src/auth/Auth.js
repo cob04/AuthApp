@@ -26,7 +26,6 @@ export default class Auth {
         redirect_uri: process.env.REACT_APP_CALLBACK_URL
       })
       .then(response => {
-        console.log("I ran fine!!");
         return response;
       })
       .catch(error => {

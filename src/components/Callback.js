@@ -19,7 +19,6 @@ const Callback = props => {
           data.refresh_token
         );
         props.history.push("/profile");
-        setCallbackError(null);
       })
       .catch(_callbackError => setCallbackError(_callbackError));
   }, [props, callbackError]);

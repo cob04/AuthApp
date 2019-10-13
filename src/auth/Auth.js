@@ -6,7 +6,6 @@ export default class Auth {
   }
 
   authorize = () => {
-    console.log("Logging in!");
     const authUrl =
       "https://test-auth.songamusic.com/oauth/authorize?client_id=" +
       process.env.REACT_APP_APPLICATION_ID +

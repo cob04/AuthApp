@@ -10,14 +10,8 @@ const Callback = props => {
     let auth_code = urlParams.get("code");
     props.auth
       .requestAccess(auth_code)
-      .then(response => {
-        let data = response.data;
-        props.setUser(data.user);
-        props.setAccessToken(
-          data.access_token,
-          data.token_type,
-          data.refresh_token
-        );
+      .then(user => {
+        props.setUser(user);
         props.history.push("/profile");
       })
       .catch(_callbackError => setCallbackError(_callbackError));

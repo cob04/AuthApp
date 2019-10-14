@@ -16,12 +16,7 @@ class App extends Component {
     this.state = {};
   }
   setUserData = user => this.setState({ user: user });
-  setAccessToken = (accessToken, tokenType, refreshToken) =>
-    this.setState({
-      accessToken: accessToken,
-      tokenType: tokenType,
-      refreshToken: refreshToken
-    });
+
   render() {
     return (
       <Router>
@@ -40,7 +35,6 @@ class App extends Component {
             render={props => (
               <Callback
                 setUser={this.setUserData}
-                setAccessToken={this.setAccessToken}
                 auth={this.auth}
                 {...props}
               />

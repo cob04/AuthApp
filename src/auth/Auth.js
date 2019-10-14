@@ -1,5 +1,11 @@
 import axios from "axios";
 
+let _accessToken = null;
+let _refreshToken = null;
+let _tokenType = null;
+let _expiresIn = null;
+let _createdAt = null;
+
 export default class Auth {
   constructor(history) {
     this.history = history;
@@ -25,7 +31,13 @@ export default class Auth {
         redirect_uri: process.env.REACT_APP_CALLBACK_URL
       })
       .then(response => {
-        return response;
+        let data = response.data;
+        _accessToken = data.access_token;
+        _refreshToken = data.refresh_token;
+        _tokenType = data.token_type;
+        _expiresIn = data.expires_in;
+        _createdAt = data.create_at;
+        return data.user;
       })
       .catch(error => {
         return error;
